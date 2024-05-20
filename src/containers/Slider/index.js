@@ -8,10 +8,11 @@ const Slider = () => {
   const [index, setIndex] = useState(0); 
 
   // Tri des événements par date décroissante
-  if (data == null) {
-    return false
-  }
-  const byDateDesc = data.focus.sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date))
+  const byDateDesc = data?.focus
+    ? data?.focus.sort(
+        (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+      )
+    : [];
 
   useEffect(() => {
     // Utilisation de l'effet useEffect pour gérer le changement automatique d'index
@@ -28,7 +29,7 @@ const Slider = () => {
     // Gestion du changement d'option dans la pagination
     setIndex(parseInt(e.target.value, 10)); // Mise à jour de l'index en fonction de la valeur sélectionnée
   };
-
+  
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (

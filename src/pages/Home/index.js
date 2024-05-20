@@ -18,13 +18,7 @@ const Page = () => {
   
   const { data } = useData();
   
-  if (data == null) {
-    return false
-  }
-   
-   const sortedEvents = data.events.sort((a, b) => new Date(b.date) - new Date(a.date));
-  
- 
+  const sortedEvents = (data?.events || []).sort((a, b) => new Date(b.date) - new Date(a.date));
   const lastEvent = sortedEvents[0];
   return <>
     <header>
